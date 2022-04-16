@@ -1,5 +1,12 @@
+import "./app.scss";
+import Home from "./Pages/Home/Home";
+
 function App() {
-  return <div>Hello World!</div>;
+  return (
+    <div>
+      <Home />
+    </div>
+  );
 }
 
 export default App;
