@@ -1,9 +1,17 @@
 import "./navbar.scss";
-import SearchIcon from "@mui/icons-material/Search";
+import { Search, Notifications, ArrowDropDown } from "@mui/icons-material";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  window.onscroll = () => {
+    setIsScrolled(window.pageYOffset === 0 ? false : true);
+    return () => (window.onscroll = null);
+  };
+
   return (
-    <div className="navbar">
+    <div className={isScrolled ? "navbar scrolled" : "navbar"}>
       <div className="container">
         <div className="left">
           <img
@@ -17,7 +25,22 @@ const Navbar = () => {
           <span>My List</span>
         </div>
         <div className="right">
-          <SearchIcon />
+          <Search className="icon" />
+          <span>KID</span>
+          <Notifications className="icon" />
+          <img
+            src="https://images.pexels.com/photos/1310522/pexels-photo-1310522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt=""
+          />
+          <div className="profile">
+            <ArrowDropDown className="icon" />
+            <div className="options">
+              <span>Profile</span>
+              <span>Settings</span>
+              <span>Help</span>
+              <span>Sign Out</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
