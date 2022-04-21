@@ -3,11 +3,11 @@ import List from "../../components/List/List";
 import Navbar from "../../components/Navbar/Navbar";
 import "./home.scss";
 
-const Home = () => {
+const Home = ({ type }) => {
   return (
     <div className="home">
       <Navbar />
-      <Featured />
+      <Featured type={type} />
       <List />
       <List />
       <List />
