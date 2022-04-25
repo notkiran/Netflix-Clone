@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./register.scss";
 
@@ -21,13 +21,11 @@ const Register = () => {
     e.preventDefault();
     setPassword(passwordRef.current.value);
     setUsername(usernameRef.current.value);
-    console.log(usernameRef.current.value);
     const data = {
       email,
       username,
       password,
     };
-    console.log(data);
     try {
       await axios.post("auth/register", data);
       navigate("/login");
@@ -35,10 +33,6 @@ const Register = () => {
       console.log(err);
     }
   };
-
-  useEffect(() => {
-    console.log(email, password, username);
-  }, [email, password, username]);
 
   return (
     <div className="register">
@@ -49,7 +43,9 @@ const Register = () => {
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/255px-Netflix_2015_logo.svg.png"
             alt=""
           />
-          <button className="loginButton">Sign In</button>
+          <button className="loginButton" onClick={() => navigate("/login")}>
+            Sign In
+          </button>
         </div>
       </div>
       <div className="container">
