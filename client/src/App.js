@@ -9,9 +9,11 @@ import Home from "./Pages/Home/Home";
 import Watch from "./Pages/Watch/Watch";
 import Register from "./Pages/Register/Register";
 import Login from "./Pages/Login/Login";
+import { useContext } from "react";
+import { AuthContext } from "./context/authContext/AuthContext";
 
 function App() {
-  const user = true;
+  const { user } = useContext(AuthContext);
   return (
     <Router>
       <Routes>

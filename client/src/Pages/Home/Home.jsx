@@ -14,7 +14,7 @@ const Home = ({ type }) => {
       try {
         const res = await axios.get(
           `lists${type ? "?type=" + type : ""}${
-            genre ? "?genre=" + genre : ""
+            genre ? "&genre=" + genre : ""
           }`,
           {
             headers: {
@@ -33,7 +33,7 @@ const Home = ({ type }) => {
   return (
     <div className="home">
       <Navbar />
-      <Featured type={type} />
+      <Featured type={type} setGenre={setGenre} />
       {lists.map((list) => (
         <List list={list} />
       ))}

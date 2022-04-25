@@ -1,20 +1,44 @@
-import { useRef, useState } from "react";
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./register.scss";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
 
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+  const usernameRef = useRef("");
 
   const handleStart = () => {
     setEmail(emailRef.current.value);
   };
 
-  const handleFinish = () => {
+  const handleFinish = async (e) => {
+    e.preventDefault();
     setPassword(passwordRef.current.value);
+    setUsername(usernameRef.current.value);
+    console.log(usernameRef.current.value);
+    const data = {
+      email,
+      username,
+      password,
+    };
+    console.log(data);
+    try {
+      await axios.post("auth/register", data);
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+    }
   };
+
+  useEffect(() => {
+    console.log(email, password, username);
+  }, [email, password, username]);
 
   return (
     <div className="register">
@@ -43,6 +67,7 @@ const Register = () => {
           </div>
         ) : (
           <form className="input">
+            <input type="text" placeholder="Username" ref={usernameRef} />
             <input type="password" placeholder="Password" ref={passwordRef} />
             <button className="registerButton" onClick={handleFinish}>
               Start
