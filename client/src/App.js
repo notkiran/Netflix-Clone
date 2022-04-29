@@ -22,32 +22,22 @@ function App() {
           path="/"
           element={user ? <Home /> : <Navigate to="/register" />}
         />
-      </Routes>
-      <Routes>
         <Route
           path="/register"
           element={!user ? <Register /> : <Navigate to="/" />}
         />
-      </Routes>
-      <Routes>
         <Route
           path="/login"
           element={!user ? <Login /> : <Navigate to="/" />}
         />
-      </Routes>
-      {user && (
-        <>
-          <Routes>
+        {user && (
+          <>
             <Route path="/movies" element={<Home type="movie" />} />
-          </Routes>
-          <Routes>
             <Route path="/series" element={<Home type="series" />} />
-          </Routes>
-          <Routes>
             <Route path="/watch" element={<Watch />} />
-          </Routes>
-        </>
-      )}
+          </>
+        )}
+      </Routes>
     </Router>
   );
 }
